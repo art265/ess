@@ -46,7 +46,9 @@ export default function DangerZone({ settings, openMenu }: MentionCooldownProps)
 				<Field>
 					<Label htmlFor="downloadLevels" name="Download Leveling Data" url="https://docs.pepemanager.com/" />
 
-					<p className="mb-2 rounded-lg text-white">The exported formatted is documented in the link above.</p>
+					<p className="mb-2 rounded-lg text-white">
+						The leveling data format is explained in the documentation. Click on the question mark above to visit it.
+					</p>
 
 					<Button id="downloadLevels" onClick={handleLevelingDataExport}>
 						Download Leveling Data
