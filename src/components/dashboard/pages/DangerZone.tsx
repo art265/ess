@@ -20,6 +20,10 @@ export default function DangerZone({ settings, openMenu }: MentionCooldownProps)
 
 	useEffect(() => window.scroll({ behavior: "auto", left: 0, top: 0 }), [openMenu]);
 
+	const handleLevelingDataExport = () => {
+		window.open(`${API_BASE_URL}/levels/${settings.id}/export`, "_blank");
+	};
+
 	const handleDeleteGuild = () => {
 		fetch(`${API_BASE_URL}/guilds/${settings.id}`, { credentials: "include", method: "DELETE" })
 			.then((res) => {
@@ -40,6 +44,16 @@ export default function DangerZone({ settings, openMenu }: MentionCooldownProps)
 
 			<Fieldset>
 				<Field>
+					<Label htmlFor="downloadLevels" name="Download Leveling Data" url="https://docs.pepemanager.com/" />
+
+					<p className="mb-2 rounded-lg text-white">The exported formatted is documented in the link above.</p>
+
+					<Button id="downloadLevels" onClick={handleLevelingDataExport}>
+						Download Leveling Data
+					</Button>
+				</Field>
+
+				<Field>
 					<Label htmlFor="resetSettings" name="Reset Settings" url="https://docs.pepemanager.com/" />
 
 					<p className="mb-2 rounded-lg text-white">
@@ -50,7 +64,7 @@ export default function DangerZone({ settings, openMenu }: MentionCooldownProps)
 						CAUTION: This action is irreversible. Please make sure you want to do this before proceeding.
 					</p>
 
-					<Button onClick={handleDeleteGuild} red withConfirmation>
+					<Button id="resetSettings" onClick={handleDeleteGuild} red withConfirmation>
 						Reset Settings
 					</Button>
 				</Field>
