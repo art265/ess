@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useState, type ReactNode } from "react";
 import { getDatabaseLimit } from "../utils/common";
-import { API_BASE_URL, VANITY_REGEX, type DATABASE_LIMITS, type Snowflake } from "../utils/constants";
+import { API_BASE_URL, VANITY_REGEX, type DATABASE_LIMITS, type FlagInfo, type Snowflake } from "../utils/constants";
 
 export type Section =
 	| "autorole"
@@ -314,6 +314,7 @@ export interface GuildSettings {
 	autoPublishChannels: string[];
 	autoResetLevels: AutoResetLevels;
 	autoRole: string[];
+	autoRoleFlags: AutoRoleFlags[];
 	autoRoleTimeout: number | null;
 	emojiList: boolean;
 	emojiListChannel: string | null;
@@ -347,6 +348,13 @@ export interface GuildSettings {
 	xpResponseType: string | null;
 	xpRoleRewards: XpRoleReward[];
 	xpWhitelistedChannels: string[];
+}
+
+export type AutoRoleFlagId = keyof typeof FlagInfo;
+
+export interface AutoRoleFlags {
+	flagId: AutoRoleFlagId;
+	roleIds: string[];
 }
 
 export enum AutoResetLevels {

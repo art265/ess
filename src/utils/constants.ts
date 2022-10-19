@@ -210,9 +210,27 @@ export function getRequiredXp(level: number): number {
 	return level === 0 ? 0 : 100 + 50 * (level - 1) ** 2;
 }
 
+export const FlagInfo = {
+	1: { icon: "/static/badges/staff.svg", name: "Discord Staff" },
+	2: { icon: "/static/badges/partner.svg", name: "Partner" },
+	4: { icon: "/static/badges/hypesquad-events.svg", name: "HypeSquad Events" },
+	8: { icon: "/static/badges/bug-hunter-level-1.svg", name: "Bug Hunter (Level 1)" },
+	64: { icon: "/static/badges/hypesquad-bravery.svg", name: "HypeSquad Bravery" },
+	128: { icon: "/static/badges/hypesquad-brilliance.svg", name: "HypeSquad Brilliance" },
+	256: { icon: "/static/badges/hypesquad-balance.svg", name: "HypeSquad Balance" },
+	512: { icon: "/static/badges/early-supporter.svg", name: "Early Supporter" },
+	16_384: { icon: "/static/badges/bug-hunter-level-2.svg", name: "Bug Hunter (Level 2)" },
+	131_072: { icon: "/static/badges/verified-bot-developer.svg", name: "Verified Bot Developer" },
+	262_144: { icon: "/static/badges/certified-moderator.svg", name: "Certified Moderator" },
+} as const;
+
+const flagCount = Object.keys(FlagInfo).length;
+
 export const DATABASE_LIMITS = {
 	autoPublishChannels: { maxLength: 5 },
 	autoRole: { maxLength: 5 },
+	autoRoleFlags: { maxLength: flagCount },
+	autoRoleFlagsRoles: { maxLength: 5 },
 	autoRoleTimeout: { max: 1_800_000, min: 60_000 },
 	mentionCooldown: { max: 1_800_000, min: 300_000 },
 	mentionCooldownRoles: { maxLength: 25 },
@@ -237,6 +255,8 @@ export const DATABASE_LIMITS = {
 export const DATABASE_PREMIUM_LIMITS = {
 	autoPublishChannels: { maxLength: 25 },
 	autoRole: { maxLength: 25 },
+	autoRoleFlags: { maxLength: flagCount },
+	autoRoleFlagsRoles: { maxLength: 5 },
 	autoRoleTimeout: { max: 1_800_000, min: 60_000 },
 	mentionCooldown: { max: 1_800_000, min: 300_000 },
 	mentionCooldownRoles: { maxLength: 25 },
